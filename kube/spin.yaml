@@ -12,10 +12,11 @@ spec:
       labels:
         app: wasm-spin
     spec:
-      runtimeClassName: spin-test
+      runtimeClassName: wasmtime-spin
       containers:
-        - name: spin-hello
-          image: ghcr.io/deislabs/containerd-wasm-shims/examples/spin-rust-hello:v0.5.1
+        - name: hello-spin
+          imagePullPolicy: Never
+          image: wasmtest_spin:latest
           command: ["/"]
           resources: # limit the resources to 128Mi of memory and 100m of CPU
             limits:
