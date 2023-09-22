@@ -12,12 +12,12 @@ spec:
       labels:
         app: wasm-spin
     spec:
-      runtimeClassName: wasmtime-spin
+      # runtimeClassName: wasmtime-spin
       containers:
         - name: hello-spin
           imagePullPolicy: Never
-          image: wasmtest_spin:latest
-          command: ["/"]
+          image: wasmtest_spin
+          # command: ["/"]
           resources: # limit the resources to 128Mi of memory and 100m of CPU
             limits:
               cpu: 100m

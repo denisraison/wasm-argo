@@ -15,7 +15,7 @@ create-k3d:
 	k3d cluster create $(CLUSTER_NAME) --image $(IMAGE_NAME) -p "8081:80@loadbalancer" --agents 1
 
 build-workload-images:
-	$(foreach shim,$(SHIMS),docker build --platform=wasi/wasm -t $(TEST_IMG_NAME_$(shim)) ../apps/hello;)
+	$(foreach shim,$(SHIMS),docker buildx build --platform=wasi/wasm --load -t $(TEST_IMG_NAME_$(shim)) ../apps/hello;)
 
 load-workload-images: build-workload-images
 	$(foreach shim,$(SHIMS),k3d image load $(TEST_IMG_NAME_$(shim));)
